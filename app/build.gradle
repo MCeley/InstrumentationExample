@@ -1,7 +1,11 @@
+import com.michaelceley.example.plugin.InstrumentationPlugin
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
+
+apply plugin: InstrumentationPlugin
 
 android {
     compileSdk 32
