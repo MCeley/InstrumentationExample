@@ -3,10 +3,21 @@ package com.michaelceley.example.plugin.instrumentation
 import com.android.build.api.instrumentation.AsmClassVisitorFactory
 import com.android.build.api.instrumentation.ClassContext
 import com.android.build.api.instrumentation.ClassData
-import com.android.build.api.instrumentation.InstrumentationParameters
 import org.objectweb.asm.ClassVisitor
 
-abstract class LoggingClassVisitorFactory : AsmClassVisitorFactory<InstrumentationParameters.None> {
+abstract class LoggingClassVisitorFactory : AsmClassVisitorFactory<LoggingParameters> {
+
+    companion object {
+        private const val checkChangeListener = "android.widget.CompoundButton\$OnCheckedChangeListener"
+        private const val clickListener = "android.view.View\$OnClickListener"
+
+        private val interfacesOfNote by lazy {
+            listOf(
+                checkChangeListener,
+                clickListener
+            )
+        }
+    }
 
     override fun createClassVisitor(
         classContext: ClassContext,
@@ -16,7 +27,7 @@ abstract class LoggingClassVisitorFactory : AsmClassVisitorFactory<Instrumentati
     }
 
     override fun isInstrumentable(classData: ClassData): Boolean {
-        // Add logic in here to determine which classes to instrument.
-        return true
+        // Only instrument classes that implement an interface we care about.
+        return classData.interfaces.any { it in interfacesOfNote }
     }
 }

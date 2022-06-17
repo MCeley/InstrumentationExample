@@ -17,7 +17,10 @@ abstract class InstrumentationPlugin : Plugin<Project> {
             variant.instrumentation.transformClassesWith(
                 LoggingClassVisitorFactory::class.java,
                 InstrumentationScope.PROJECT) {
-                // Nothing to do here just yet.
+                // Pass in the current system time on every evaluation.
+                // This forces the plugin to run all of its code every time.
+                // This should be removed in a real plugin to enable incremental builds.
+                it.forceInvalidate.set(System.currentTimeMillis())
             }
             variant.instrumentation.setAsmFramesComputationMode(FramesComputationMode.COPY_FRAMES)
         }
