@@ -1,0 +1,11 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+caches
+libraries
+modules.xml
+workspace.xml
+navEditor.xml
+assetWizardSettings.xml
+vcs.xml
+misc.xml
