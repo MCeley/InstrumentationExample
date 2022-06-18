@@ -4,12 +4,14 @@ import android.util.Log
 
 object Logger {
 
-    const val TAG = "InjectedPrint"
+    private const val TAG = "InjectedPrint"
 
+    @JvmStatic
     fun printClickMessage() {
         Log.d(TAG, "View was clicked")
     }
 
+    @JvmStatic
     fun printValueChangeMessage() {
         Log.d(TAG, "View state was toggled")
     }

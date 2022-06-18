@@ -1,6 +1,7 @@
 package com.michaelceley.example.plugin.instrumentation
 
 import org.objectweb.asm.ClassVisitor
+import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 
 class LoggingClassVisitor(nextVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM9, nextVisitor) {
@@ -14,8 +15,18 @@ class LoggingClassVisitor(nextVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM9
         interfaces: Array<out String>?
     ) {
         // Print the name of the class we're visiting.
-        println(name)
+        println("Visiting class: $name")
+
         super.visit(version, access, name, signature, superName, interfaces)
     }
 
+    override fun visitMethod(
+        access: Int,
+        name: String?,
+        descriptor: String?,
+        signature: String?,
+        exceptions: Array<out String>?
+    ): MethodVisitor {
+        return LoggingMethodVisitor(name, super.visitMethod(access, name, descriptor, signature, exceptions))
+    }
 }
