@@ -1,6 +1,9 @@
 package com.michaelceley.examples.library
 
 import android.util.Log
+import android.view.View
+import android.widget.CompoundButton
+import android.widget.TextView
 
 object Logger {
 
@@ -16,5 +19,21 @@ object Logger {
     @JvmStatic
     fun printValueChangeMessage() {
         Log.d(TAG, "View state was toggled")
+    }
+
+    @JvmStatic
+    fun printViewDetails(view: View) {
+        Log.d(TAG, "View clicked of type: ${view.javaClass.simpleName}")
+        (view as? TextView)?.let {
+            Log.d(TAG, "Text shown in clicked view: ${it.text}")
+        }
+    }
+
+    @JvmStatic
+    fun printValueChangeDetails(compoundButton: CompoundButton?, isChecked: Boolean) {
+        compoundButton?.let {
+            Log.d(TAG, "Value changed on view of type: ${it.javaClass.simpleName}")
+            Log.d(TAG, "Value of toggle control: $isChecked")
+        }
     }
 }
