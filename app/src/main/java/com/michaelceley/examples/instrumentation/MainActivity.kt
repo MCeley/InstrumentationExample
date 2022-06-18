@@ -9,6 +9,7 @@ import android.widget.CheckBox
 import android.widget.CompoundButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 
+@Suppress("ObjectLiteralToLambda")
 class MainActivity : AppCompatActivity() {
 
     companion object {
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // These interfaces are purposely implemented as anonymous classes instead of lambdas.
-        // When instrumenting code, lambdas are not a one-to-one equivalent with their interface
+        // When looking at byte code, lambdas are not a one-to-one equivalent with their interface
         // type and thus require extra work to identify with a class visitor. By using anonymous
         // classes for this example, we can quickly look up interface types using AGP ClassData.
 

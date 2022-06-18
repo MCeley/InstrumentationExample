@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Instrumentation Example</string>
+    <string name="instrumented_button_1">Instrumented Button 1</string>
+    <string name="instrumented_button_2">Instrumented Button 2</string>
+    <string name="instrumented_switch">Instrumented Switch</string>
+    <string name="instrumented_checkbox">Instrumented CheckBox</string>
 </resources>

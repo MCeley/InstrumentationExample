@@ -6,6 +6,8 @@ object Logger {
 
     private const val TAG = "InjectedPrint"
 
+    // Methods must be marked as @JvmStatic to use the invokestatic instruction.
+
     @JvmStatic
     fun printClickMessage() {
         Log.d(TAG, "View was clicked")

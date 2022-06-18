@@ -8,10 +8,12 @@ class LoggingMethodVisitor(private val methodName: String?,
     : MethodVisitor(Opcodes.ASM9, methodVisitor) {
 
     override fun visitCode() {
+        // Print the name of the method that we're visiting.
         println(" - Visiting method: $methodName")
-        
+
         when (methodName) {
             "onClick" -> {
+                // Inject the printClickMessage call into click listeners.
                 visitMethodInsn(
                     Opcodes.INVOKESTATIC,
                     "com/michaelceley/examples/library/Logger",
@@ -21,6 +23,7 @@ class LoggingMethodVisitor(private val methodName: String?,
                 )
             }
             "onCheckedChanged" -> {
+                // Inject the printValueChangeMessage call into checked listeners.
                 visitMethodInsn(
                     Opcodes.INVOKESTATIC,
                     "com/michaelceley/examples/library/Logger",
