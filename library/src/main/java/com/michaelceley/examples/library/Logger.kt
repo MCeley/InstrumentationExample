@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.CompoundButton
 import android.widget.TextView
 
+@Suppress("unused")
 object Logger {
 
     private const val TAG = "InjectedPrint"
@@ -12,13 +13,8 @@ object Logger {
     // Methods must be marked as @JvmStatic to use the invokestatic instruction.
 
     @JvmStatic
-    fun printClickMessage() {
-        Log.d(TAG, "View was clicked")
-    }
-
-    @JvmStatic
-    fun printValueChangeMessage() {
-        Log.d(TAG, "View state was toggled")
+    fun printContentChangedMessage() {
+        Log.d(TAG, "Window content was changed via setContentView.")
     }
 
     @JvmStatic

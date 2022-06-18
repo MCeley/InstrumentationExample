@@ -28,7 +28,9 @@ class LoggingClassVisitor(nextVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM9
         exceptions: Array<out String>?
     ): MethodVisitor {
         println(" - Found method: $name$descriptor")
-        // TODO: Pass the descriptor through to ensure we're not injecting code into a method overload.
-        return LoggingMethodVisitor(name, super.visitMethod(access, name, descriptor, signature, exceptions))
+        return LoggingMethodVisitor(
+            "$name$descriptor",
+            super.visitMethod(access, name, descriptor, signature, exceptions)
+        )
     }
 }

@@ -8,14 +8,16 @@ import org.objectweb.asm.ClassVisitor
 abstract class LoggingClassVisitorFactory : AsmClassVisitorFactory<LoggingParameters> {
 
     companion object {
-        // These are the only two types we care about instrumenting in this example.
+        // These are the only three types we care about instrumenting in this example.
         private const val checkChangeListener = "android.widget.CompoundButton\$OnCheckedChangeListener"
         private const val clickListener = "android.view.View\$OnClickListener"
+        private const val windowCallback = "android.view.Window\$Callback"
 
         private val interfacesOfNote by lazy {
             listOf(
                 checkChangeListener,
-                clickListener
+                clickListener,
+                windowCallback
             )
         }
     }

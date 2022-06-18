@@ -9,7 +9,7 @@ import android.widget.CheckBox
 import android.widget.CompoundButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 
-@Suppress("ObjectLiteralToLambda")
+@Suppress("ObjectLiteralToLambda", "RedundantOverride")
 class MainActivity : AppCompatActivity() {
 
     companion object {
@@ -48,5 +48,10 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "Checkbox value changed: $isChecked")
             }
         })
+    }
+
+    // Adding an empty implementation for this method so we can inject some code here.
+    override fun onContentChanged() {
+        super.onContentChanged()
     }
 }

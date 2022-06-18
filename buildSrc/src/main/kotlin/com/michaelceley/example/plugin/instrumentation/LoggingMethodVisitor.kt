@@ -3,16 +3,17 @@ package com.michaelceley.example.plugin.instrumentation
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 
-class LoggingMethodVisitor(private val methodName: String?,
+class LoggingMethodVisitor(private val methodSignature: String?,
                            methodVisitor: MethodVisitor)
     : MethodVisitor(Opcodes.ASM9, methodVisitor) {
 
     override fun visitCode() {
         // Print the name of the method that we're visiting.
-        println(" - Visiting method: $methodName")
+        println(" - Visiting method: $methodSignature")
 
-        when (methodName) {
-            "onClick" -> {
+        when (methodSignature) {
+            "onClick(Landroid/view/View;)V" -> {
+
                 // Load the variable in locals slot 1.
                 // Locals:
                 //  - 0: this
@@ -29,19 +30,8 @@ class LoggingMethodVisitor(private val methodName: String?,
                     "(Landroid/view/View;)V",
                     false
                 )
-
-                // Inject the printClickMessage call into click listeners.
-                // Nothing to load prior to this call since the injected method
-                // takes no parameters and consumes nothing from the stack.
-                visitMethodInsn(
-                    Opcodes.INVOKESTATIC,
-                    "com/michaelceley/examples/library/Logger",
-                    "printClickMessage",
-                    "()V",
-                    false
-                )
             }
-            "onCheckedChanged" -> {
+            "onCheckedChanged(Landroid/widget/CompoundButton;Z)V" -> {
 
                 // Load the variables in locals slot 1 and slot 2
                 // Locals:
@@ -64,14 +54,16 @@ class LoggingMethodVisitor(private val methodName: String?,
                     "(Landroid/widget/CompoundButton;Z)V",
                     false
                 )
+            }
+            "onContentChanged()V" -> {
 
-                // Inject the printValueChangeMessage call into checked listeners.
+                // Inject the printContentChangedMessage call into the window callback.
                 // Nothing to load prior to this call since the injected method
                 // takes no parameters and consumes nothing from the stack.
                 visitMethodInsn(
                     Opcodes.INVOKESTATIC,
                     "com/michaelceley/examples/library/Logger",
-                    "printValueChangeMessage",
+                    "printContentChangedMessage",
                     "()V",
                     false
                 )
