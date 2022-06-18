@@ -7,6 +7,4 @@ This project shows how to do the following:
  * Create an Android app that includes that library module.
  * Create a Gradle plugin using the `buildSrc` directory.
  * Inject logging calls from the library module into the Android app using the AGP Instrumentation API.
-
-Planned updates:
- * Show how to pass a parameter value into an injected method call.
+ * Inject logging calls that consume parameters from the locals pool.
