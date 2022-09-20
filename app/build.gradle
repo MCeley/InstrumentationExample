@@ -8,6 +8,8 @@ plugins {
 apply plugin: InstrumentationPlugin
 
 android {
+    namespace "com.michaelceley.examples.instrumentation"
+
     compileSdk 32
 
     defaultConfig {

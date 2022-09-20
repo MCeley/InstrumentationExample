@@ -8,7 +8,7 @@ repositories {
 }
 
 dependencies {
-    implementation "com.android.tools.build:gradle-api:7.2.1"
+    implementation "com.android.tools.build:gradle-api:7.3.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.10"
     implementation "org.ow2.asm:asm-util:9.2"
     gradleApi()
